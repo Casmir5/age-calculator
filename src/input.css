@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card {
+  border-bottom-right-radius: 5rem;
+}
+
+.error {
+  @apply border-red-700;
+}
+.error-text {
+  @apply text-red-500;
+}

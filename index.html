@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Age calculator app</title>
+  <link rel="stylesheet" href="/dist/output.css">
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <!-- <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(228, 45%, 44%);
+    }
+  </style> -->
+</head>
+
+<body class="flex flex-col justify-center items-center min-h-screen bg-slate-500">
+  <div class="bg-white mx-3 card p-5 py-10 rounded-md ">
+
+    <form class="flex gap-2">
+      <div class="flex flex-col">
+        <label for="day" class="uppercase text-xs label-day">Day</label>
+        <input type="number" class="w-full p-2 border  border-slate-300 rounded-md" name="day" placeholder="DD"
+          id="day">
+        <p class="text-red-500 ml-1 error-day"></p>
+      </div>
+
+      <div class="flex flex-col">
+        <label for="month" class="uppercase text-xs label-month ">Month</label>
+        <input type="number" class="w-full p-2 border  border-slate-300 rounded-md" name="month" placeholder="MM"
+          id="month">
+        <p class="text-red-500 ml-1 error-month"></p>
+
+      </div>
+
+      <div class="flex flex-col">
+        <label for="year" class="uppercase text-xs label-year">Year</label>
+        <input type="number" class="w-full p-2 border  border-slate-300 rounded-md" name="year" placeholder="YYYY"
+          id="year">
+        <p class="text-red-500 ml-1 error-year"></p>
+
+      </div>
+    </form>
+
+    <div class="relative my-10">
+      <div class="divider w-full bg-slate-400 border-b mt-5  mb-5"> </div>
+      <button class="btn bg-purple-600 p-3 rounded-full absolute right-36 xl:right-0 -top-6 ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" viewBox="0 0 46 44">
+          <g fill="none" stroke="#FFF" stroke-width="2">
+            <path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" />
+          </g>
+        </svg>
+      </button>
+    </div>
+
+    <section>
+      <div class="flex gap-1">
+        <p class="text-7xl font-bold text-purple-600 " id="year-el">--</p>
+        <p class="text-slate-700 text-5xl font-bold self-center">years</p>
+
+      </div>
+
+      <div class="flex gap-1">
+        <p class="text-7xl font-bold text-purple-600 " id="month-el">--</p>
+        <p class="text-slate-700 text-5xl font-bold self-center">months</p>
+      </div>
+
+      <div class="flex gap-1">
+        <p class="text-7xl font-bold text-purple-600 " id="day-el">--</p>
+        <p class="text-slate-700 text-5xl font-bold self-center"> days</p>
+      </div>
+  </div>
+
+
+
+  <script src="/src/index.js"></script>
+
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+</body>
+
+</html>
