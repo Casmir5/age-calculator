@@ -30,7 +30,7 @@ const year = today.getFullYear();
 let hasYearBeenValidated, hasMonthBeenValidated, hasDayBeenValidated;
 hasYearBeenValidated = hasMonthBeenValidated = hasDayBeenValidated = false;
 
-//Set Input maximum length
+//Set Inputs maximum length
 const maxInputlength = function () {
   // Input Year maximum length = 4
   inputYear.addEventListener("keyup", function () {
