@@ -170,7 +170,7 @@ btn.addEventListener("click", function () {
   );
 
   const userBirthYear = yearInputValue;
-  const userBirthMonth = userBirthDate.getMonth() + 1;
+  const userBirthMonth = userBirthDate.getMonth();
   const userBirthDay = userBirthDate.getDate();
 
   validateInputs(
@@ -205,7 +205,9 @@ btn.addEventListener("click", function () {
     // }
     console.log(userBirthMonth + "hello");
     const mysmonth = monthLength(userBirthMonth);
-    const targetDate = new Date(`${year}-${userBirthMonth}-${userBirthDay}`);
+    const targetDate = new Date(
+      `${year}-${userBirthMonth + 1}-${userBirthDay}`
+    );
     console.log(`TTTT${targetDate}`);
 
     calculateDateDifference(today, targetDate, mysmonth, monthInputValue);
