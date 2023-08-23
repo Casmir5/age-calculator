@@ -9,7 +9,14 @@
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
 
   <title>Frontend Mentor | Age calculator app</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,200;1,300;1,400;1,800&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="/dist/output.css">
+
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <!-- <style>
@@ -24,38 +31,36 @@
   </style> -->
 </head>
 
-<body class="flex flex-col justify-center items-center min-h-screen bg-slate-500">
-  <div class="bg-white mx-3 card p-5 py-10 rounded-md ">
+<body class="flex flex-col justify-center items-center min-h-screen px-2">
+  <div class="card p-5 py-10 rounded-lg  w-full md:w-2/5 lg:w-2/5 xl:w-2/5 ">
 
-    <form class="flex gap-2">
+    <form class="flex gap-5 sm:pr-0 xl:pr-20 lg:pr-20">
+      <!-- <div class="w-80"></div> -->
       <div class="flex flex-col">
         <label for="day" class="uppercase text-xs label-day">Day</label>
-        <input type="number" class="w-full p-2 border  border-slate-300 rounded-md" name="day" placeholder="DD"
-          id="day">
-        <p class="text-red-500 ml-1 error-day"></p>
+        <input type="number" class="w-full p-2  border-slate-300 rounded-md" name="day" placeholder="DD" id="day">
+        <p class="ml-1 error-day"></p>
       </div>
 
       <div class="flex flex-col">
         <label for="month" class="uppercase text-xs label-month ">Month</label>
-        <input type="number" class="w-full p-2 border  border-slate-300 rounded-md" name="month" placeholder="MM"
-          id="month">
-        <p class="text-red-500 ml-1 error-month"></p>
+        <input type="number" class="w-full p-2 border-slate-300 rounded-md" name="month" placeholder="MM" id="month">
+        <p class="ml-1 error-month"></p>
 
       </div>
 
       <div class="flex flex-col">
         <label for="year" class="uppercase text-xs label-year">Year</label>
-        <input type="number" class="w-full p-2 border  border-slate-300 rounded-md" name="year" placeholder="YYYY"
-          id="year">
-        <p class="text-red-500 ml-1 error-year"></p>
+        <input type="number" class="w-full p-2   border-slate-300 rounded-md" name="year" placeholder="YYYY" id="year">
+        <p class="ml-1 error-year"></p>
 
       </div>
     </form>
 
     <div class="relative my-10">
-      <div class="divider w-full bg-slate-400 border-b mt-5  mb-5"> </div>
-      <button class="btn bg-purple-600 p-3 rounded-full absolute right-36 xl:right-0 -top-6 ">
-        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" viewBox="0 0 46 44">
+      <div class="divider w-full border-b-2 mt-5  mb-5"> </div>
+      <button class="btn p-4 rounded-full absolute right-36 xl:right-0 -top-7 ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="26" viewBox="0 0 46 44">
           <g fill="none" stroke="#FFF" stroke-width="2">
             <path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" />
           </g>
@@ -65,19 +70,19 @@
 
     <section>
       <div class="flex gap-1">
-        <p class="text-7xl font-bold text-purple-600 " id="year-el">--</p>
-        <p class="text-slate-700 text-5xl font-bold self-center">years</p>
+        <p class="text-6xl font-extrabold  " id="year-el">--</p>
+        <p class=" text-6xl font-bold self-center hello">years</p>
 
       </div>
 
       <div class="flex gap-1">
-        <p class="text-7xl font-bold text-purple-600 " id="month-el">--</p>
-        <p class="text-slate-700 text-5xl font-bold self-center">months</p>
+        <p class="text-6xl font-extrabold my-2" id="month-el">--</p>
+        <p class=" text-6xl font-bold self-center hello">months</p>
       </div>
 
       <div class="flex gap-1">
-        <p class="text-7xl font-bold text-purple-600 " id="day-el">--</p>
-        <p class="text-slate-700 text-5xl font-bold self-center"> days</p>
+        <p class="text-6xl font-extrabold  " id="day-el">--</p>
+        <p class=" text-6xl font-extrabold self-center hello">days</p>
       </div>
   </div>
 

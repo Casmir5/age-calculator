@@ -77,6 +77,16 @@ const validateInputs = function (
     inputYear.classList.add("error");
     errorYear.textContent = "Must be in the past";
     hasYearBeenValidated = false;
+  } else if (userBirthYear < 1) {
+    labelYear.classList.add("error-text");
+    inputYear.classList.add("error");
+    errorYear.textContent = "Invalid input";
+    hasYearBeenValidated = false;
+  } else if (userBirthYear.length < 4) {
+    labelYear.classList.add("error-text");
+    inputYear.classList.add("error");
+    errorYear.textContent = "Invalid input format";
+    hasYearBeenValidated = false;
   } else {
     labelYear.classList.remove("error-text");
     inputYear.classList.remove("error");
@@ -88,7 +98,7 @@ const validateInputs = function (
     console.log("the field(month) is required");
     labelMonth.classList.add("error-text");
     inputMonth.classList.add("error");
-    errorMonth.textContent = "the field is required";
+    errorMonth.textContent = "This field is required";
     console.log(month);
   } else if (+month > 12 || +month < 1) {
     // console.log(month);
@@ -181,10 +191,11 @@ btn.addEventListener("click", function () {
     ) {
       yearDiff += -1;
     }
-
+    const targetDate = new Date(`${year}-${userBirthMonth}-${userBirthDay}`);
+    calculateDateDifference(today, targetDate);
     yearEL.textContent = yearDiff;
-    monthEL.textContent = monthDiff;
-    dayEl.textContent = dayDiff;
+    monthEL.textContent = remainingMonth;
+    dayEl.textContent = remainingDays;
   } else {
     console.log("i cant help you");
   }
@@ -206,6 +217,7 @@ console.log();
 // }
 
 let remainingDays, remainingMonth;
+console.log(remainingDays, remainingMonth);
 function calculateDateDifference(today, targetDate) {
   const oneDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
   const timeDiff = Math.abs(targetDate - today); // Difference in milliseconds
@@ -220,9 +232,12 @@ function calculateDateDifference(today, targetDate) {
   return daysDiff;
 }
 
+const mytarget = new Date(`${2023}-${9}-${28}`);
 const todays = new Date(); // Current date
-const targetDate = new Date("2023-09-28"); // Target date: September 28, 2023
+const targetDate = new Date("2023-09-28");
+// Target date: September 28, 2023
 const difference = calculateDateDifference(todays, targetDate);
+console.log(remainingDays, remainingMonth);
 
 console.log(
   `The difference between today and September 28 is ${difference} days.`

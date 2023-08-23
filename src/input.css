@@ -2,13 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: hsl(0, 0%, 94%);
+}
 .card {
-  border-bottom-right-radius: 5rem;
+  background-color: rgba(255, 255, 255, 255);
+  border-bottom-right-radius: 8rem;
+}
+label {
+  color: hsl(0, 1%, 44%);
+  padding-bottom: 8px;
+  letter-spacing: 1px;
 }
 
+label,
+.hello,
+#year-el,
+#month-el,
+#day-el {
+  font-family: "Poppins", sans-serif;
+}
 .error {
-  @apply border-red-700;
+  border-color: hsl(0, 100%, 67%);
 }
-.error-text {
-  @apply text-red-500;
+
+.error-text,
+.error-month,
+.error-day,
+.error-year {
+  color: hsl(0, 100%, 67%);
 }
+
+.error-month,
+.error-day,
+.error-year {
+  @apply pt-1 text-sm font-normal;
+}
+input {
+  @apply border font-bold text-2xl;
+}
+input::placeholder {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 10px;
+  /* padding-top: -200px; */
+}
+.divider {
+  background-color: rgba(238, 238, 238, 255);
+}
+.hello {
+  color: hsl(0, 0%, 8%);
+  font-style: italic;
+}
+#year-el,
+#month-el,
+#day-el {
+  color: hsl(259, 100%, 65%);
+}
+.btn {
+  background-color: hsl(259, 100%, 65%);
+}
+
+/* input {
+  width: 40px;
+} */
