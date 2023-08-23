@@ -1,59 +1,60 @@
 "use strict";
 
+// labels
 const labelDay = document.querySelector(".label-day");
 const labelMonth = document.querySelector(".label-month");
 const labelYear = document.querySelector(".label-year");
 
+// Inputs
 const inputDay = document.querySelector("#day");
 const inputMonth = document.querySelector("#month");
 const inputYear = document.querySelector("#year");
 
+// Errors Elements
+const errorDay = document.querySelector(".error-day");
+const errorMonth = document.querySelector(".error-month");
+const errorYear = document.querySelector(".error-year");
+
+//  User Age Elements
 const yearEL = document.querySelector("#year-el");
 const monthEL = document.querySelector("#month-el");
 const dayEl = document.querySelector("#day-el");
 const btn = document.querySelector(".btn");
 
+// Current date
 const today = new Date();
 const day = today.getDate();
 const month = today.getMonth() + 1;
 const year = today.getFullYear();
 
-const errorDay = document.querySelector(".error-day");
-const errorMonth = document.querySelector(".error-month");
-const errorYear = document.querySelector(".error-year");
+let hasYearBeenValidated, hasMonthBeenValidated, hasDayBeenValidated;
+hasYearBeenValidated = hasMonthBeenValidated = hasDayBeenValidated = false;
 
-const yearValue = inputYear.value;
-const monthValue = inputMonth.value;
-const dayValue = inputDay.value;
-console.log(inputYear, inputMonth, inputDay, yearEL, monthEL, dayEl, btn);
-
+//Set Input maximum length
 const maxInputlength = function () {
-  inputYear.addEventListener("keyup", function (e) {
+  // Input Year maximum length = 4
+  inputYear.addEventListener("keyup", function () {
     if (inputYear.value.length > 3) {
-      // alert("length is");
       inputYear.value = inputYear.value.slice(0, 4);
     }
   });
 
-  inputMonth.addEventListener("keyup", function (e) {
+  // Input Month maximum length = 2
+  inputMonth.addEventListener("keyup", function () {
     if (inputMonth.value.length > 1) {
-      // alert("length is");
       inputMonth.value = inputMonth.value.slice(0, 2);
     }
   });
 
-  inputDay.addEventListener("keyup", function (e) {
+  // Input Month maximum length = 2
+  inputDay.addEventListener("keyup", function () {
     if (inputDay.value.length > 1) {
-      // alert("length is");
       inputDay.value = inputDay.value.slice(0, 2);
     }
   });
 };
 
 maxInputlength();
-
-let hasYearBeenValidated, hasMonthBeenValidated, hasDayBeenValidated;
-hasYearBeenValidated = hasMonthBeenValidated = hasDayBeenValidated = false;
 
 const validateInputs = function (
   year,
@@ -62,27 +63,32 @@ const validateInputs = function (
   userBirthMonth,
   userBirthYear
 ) {
-  console.log(`current year :${year}, user Birth Year ${userBirthYear}`);
-  // if ((year, month, day, userBirthMonth, userBirthYear)) {
-  // validate input year
+  // is year input empty?
   if (userBirthYear === "") {
     console.log("the field(year) is empty");
     labelYear.classList.add("error-text");
     inputYear.classList.add("error");
-    errorYear.textContent = "the field is required";
-    // hasYearBeenValidated = false;
+    errorYear.textContent = "this field is required";
+
+    // is birth year in the future?
   } else if (userBirthYear > year) {
     console.log("egbon from the future , rest!!!");
     labelYear.classList.add("error-text");
     inputYear.classList.add("error");
     errorYear.textContent = "Must be in the past";
     hasYearBeenValidated = false;
-  } else if (userBirthYear < 1) {
+  }
+
+  // is the birthyear negative value
+  else if (userBirthYear < 1) {
     labelYear.classList.add("error-text");
     inputYear.classList.add("error");
     errorYear.textContent = "Invalid input";
     hasYearBeenValidated = false;
-  } else if (userBirthYear.length < 4) {
+  }
+
+  // is the birthyear correctly formatted
+  else if (userBirthYear.length < 4) {
     labelYear.classList.add("error-text");
     inputYear.classList.add("error");
     errorYear.textContent = "Invalid input format";
@@ -93,14 +99,17 @@ const validateInputs = function (
     errorYear.textContent = "";
     hasYearBeenValidated = true;
   }
-  // validate input month
+
+  // is month input empty?
   if (month === "") {
     console.log("the field(month) is required");
     labelMonth.classList.add("error-text");
     inputMonth.classList.add("error");
     errorMonth.textContent = "This field is required";
     console.log(month);
-  } else if (+month > 12 || +month < 1) {
+  }
+  // does birth month exist
+  else if (+month > 12 || +month < 1) {
     // console.log(month);
     labelMonth.classList.add("error-text");
     inputMonth.classList.add("error");
@@ -113,13 +122,16 @@ const validateInputs = function (
     hasMonthBeenValidated = true;
   }
 
-  // validate input day
+  // is input input day empty
   if (day === "") {
     console.log("the field(day) is required");
     labelDay.classList.add("error-text");
     inputDay.classList.add("error");
     errorDay.textContent = "the field is required";
-  } else if (day > numberOfDaysInMonth(userBirthMonth)) {
+  }
+
+  // does the days correspond the birth month length?
+  else if (day > monthLength(userBirthMonth)) {
     labelDay.classList.add("error-text");
     inputDay.classList.add("error");
     errorDay.textContent = "must be a valid day";
@@ -128,117 +140,98 @@ const validateInputs = function (
     labelDay.classList.remove("error-text");
     inputDay.classList.remove("error");
     errorDay.textContent = "";
-    // hasDayBeenValidated = false;
     hasDayBeenValidated = true;
   }
 };
-// };
 
-// validateInput(2023);
-
-const numberOfDaysInMonth = function (month) {
-  let maxDaysinMonth;
+// check the number of days in the inputed Month
+const monthLength = function (month) {
+  let monthDays;
   if (month === 4 || month === 6 || month === 9 || month === 11) {
-    maxDaysinMonth = 30;
+    monthDays = 30;
   } else if (month === 2) {
-    maxDaysinMonth = year % 2 === 0 ? 28 : 29;
+    monthDays = year % 2 === 0 ? 28 : 29;
   } else {
-    maxDaysinMonth = 31;
+    monthDays = 31;
   }
 
-  return maxDaysinMonth;
+  return monthDays;
 };
 
-// console.log("helloo" + validateInputs(2023, 12, 20, 13));
-console.log(numberOfDaysInMonth(2));
-if (2 < numberOfDaysInMonth(5)) {
-  console.log("perfecteto");
-} else {
-  console.log("error");
-}
-
 btn.addEventListener("click", function () {
-  const yearValue = inputYear.value;
-  const monthValue = inputMonth.value;
-  const dayValue = inputDay.value;
+  const yearInputValue = inputYear.value;
+  const monthInputValue = inputMonth.value;
+  const dayInputValue = inputDay.value;
 
   const userBirthDate = new Date(
-    inputYear.value,
-    inputMonth.value,
-    inputDay.value
+    yearInputValue,
+    monthInputValue,
+    dayInputValue
   );
 
-  const userBirthYear = yearValue;
+  const userBirthYear = yearInputValue;
   const userBirthMonth = userBirthDate.getMonth();
   const userBirthDay = userBirthDate.getDate();
 
-  validateInputs(year, monthValue, dayValue, userBirthMonth, userBirthYear);
-  console.log(+monthValue);
-  // console.log(+monthValue > 12 || +monthValue < 1);
-  // console.log(monthValue > 12 || monthValue < 1);
-  console.log(hasDayBeenValidated, hasMonthBeenValidated, hasYearBeenValidated);
-  if (hasDayBeenValidated && hasMonthBeenValidated && hasYearBeenValidated) {
-    let yearDiff = year - userBirthYear;
-    let monthDiff = month - userBirthMonth;
-    let dayDiff = day + userBirthDay;
+  validateInputs(
+    year,
+    monthInputValue,
+    dayInputValue,
+    userBirthMonth,
+    userBirthYear
+  );
 
-    if (monthDiff < 0) {
-      monthDiff = monthDiff + 12;
-    }
+  console.log(hasDayBeenValidated, hasMonthBeenValidated, hasYearBeenValidated);
+  // has all inputs been validated?
+  if (hasDayBeenValidated && hasMonthBeenValidated && hasYearBeenValidated) {
+    // calc user age
+    let calcYearDiff = year - userBirthYear;
+
+    // has user done his or her birthay? if not reduce birth age
     if (
       month < userBirthMonth ||
       (month === userBirthMonth && day > userBirthDay)
     ) {
-      yearDiff += -1;
+      calcYearDiff += -1;
     }
+
+    const mysmonth = monthLength(userBirthMonth);
     const targetDate = new Date(`${year}-${userBirthMonth}-${userBirthDay}`);
-    calculateDateDifference(today, targetDate);
-    yearEL.textContent = yearDiff;
+
+    calculateDateDifference(today, targetDate, mysmonth, monthInputValue);
+    yearEL.textContent = calcYearDiff;
     monthEL.textContent = remainingMonth;
     dayEl.textContent = remainingDays;
   } else {
-    console.log("i cant help you");
+    console.log("egbon validate your inputs");
   }
 });
-console.log();
-
-// let calcTime = 24 * 60 * 60 * 1000;
-// const daysSpent = Math.abs(new Date("2023-09-21") - today);
-// const player = Math.floor(daysSpent / calcTime);
-// let mymonth, mydays;
-// console.log(player);
-
-// if (player % 30 === 0) {
-//   mymonth += player / 30;
-//   mydays = 0;
-// } else if (player % 30 !== 0) {
-//   mydays = player % 30;
-//   mymonth = Math.trunc(player / 30);
-// }
 
 let remainingDays, remainingMonth;
 console.log(remainingDays, remainingMonth);
-function calculateDateDifference(today, targetDate) {
-  const oneDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
-  const timeDiff = Math.abs(targetDate - today); // Difference in milliseconds
+function calculateDateDifference(
+  currentDate,
+  targetDate,
+  monthLength,
+  birthMonth
+) {
+  // const current =
+  //   Number(birthMonth) === 12
+  //     ? currentDate.getFullYear() + 1
+  //     : currentDate.getFullYear();
+  // // Number of milliseconds in a day
+  // currentDate.setFullYear(current);
+  const oneDay = 24 * 60 * 60 * 1000;
+  const timeDiff = Math.abs(targetDate - currentDate); // Difference in milliseconds
   const daysDiff = Math.floor(timeDiff / oneDay); // Convert milliseconds to days
-  if (daysDiff % 30 === 0) {
-    remainingMonth += daysDiff / 30;
+  if (daysDiff % monthLength === 0) {
+    remainingMonth += daysDiff / monthLength;
     remainingDays = 0;
-  } else if (daysDiff % 30 !== 0) {
-    remainingDays = daysDiff % 30;
-    remainingMonth = Math.trunc(daysDiff / 30);
+  } else if (daysDiff % monthLength !== 0) {
+    remainingDays = daysDiff % monthLength;
+    remainingMonth = Math.trunc(daysDiff / monthLength);
   }
   return daysDiff;
 }
 
-const mytarget = new Date(`${2023}-${9}-${28}`);
-const todays = new Date(); // Current date
-const targetDate = new Date("2023-09-28");
-// Target date: September 28, 2023
-const difference = calculateDateDifference(todays, targetDate);
-console.log(remainingDays, remainingMonth);
-
-console.log(
-  `The difference between today and September 28 is ${difference} days.`
-);
+console.log(new Date("11-12-20"));

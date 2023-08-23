@@ -62,7 +62,9 @@ input::placeholder {
 .btn {
   background-color: hsl(259, 100%, 65%);
 }
-
+.center {
+  right: 39%;
+}
 /* input {
   width: 40px;
 } */
