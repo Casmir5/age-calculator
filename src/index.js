@@ -25,7 +25,7 @@ const btn = document.querySelector(".btn");
 const today = new Date();
 const day = today.getDate();
 const month = today.getMonth() + 1;
-const year = today.getFullYear();
+let year = today.getFullYear();
 
 let hasYearBeenValidated, hasMonthBeenValidated, hasDayBeenValidated;
 hasYearBeenValidated = hasMonthBeenValidated = hasDayBeenValidated = false;
@@ -170,7 +170,7 @@ btn.addEventListener("click", function () {
   );
 
   const userBirthYear = yearInputValue;
-  const userBirthMonth = userBirthDate.getMonth();
+  const userBirthMonth = userBirthDate.getMonth() + 1;
   const userBirthDay = userBirthDate.getDate();
 
   validateInputs(
@@ -195,8 +195,18 @@ btn.addEventListener("click", function () {
       calcYearDiff += -1;
     }
 
+    console.log(Number(userBirthMonth) === 12);
+    // let newYear = Number(userBirthMonth) === 12 ? year + 1 : year;
+
+    // if (Number(userBirthMonth) === 12) {
+    //   year + 1;
+    // } else {
+    //   year = year;
+    // }
+    console.log(userBirthMonth + "hello");
     const mysmonth = monthLength(userBirthMonth);
     const targetDate = new Date(`${year}-${userBirthMonth}-${userBirthDay}`);
+    console.log(`TTTT${targetDate}`);
 
     calculateDateDifference(today, targetDate, mysmonth, monthInputValue);
     yearEL.textContent = calcYearDiff;
@@ -222,7 +232,8 @@ function calculateDateDifference(
   // // Number of milliseconds in a day
   // currentDate.setFullYear(current);
   const oneDay = 24 * 60 * 60 * 1000;
-  const timeDiff = Math.abs(targetDate - currentDate); // Difference in milliseconds
+  const timeDiff = Math.abs(targetDate - currentDate);
+  console.log(targetDate); // Difference in milliseconds
   const daysDiff = Math.floor(timeDiff / oneDay); // Convert milliseconds to days
   if (daysDiff % monthLength === 0) {
     remainingMonth += daysDiff / monthLength;
@@ -235,3 +246,7 @@ function calculateDateDifference(
 }
 
 console.log(new Date("11-12-20"));
+// if(today.getFullYear())
+
+const testMonth = 9;
+console.log(testMonth === 12 ? year + 1 : year);
