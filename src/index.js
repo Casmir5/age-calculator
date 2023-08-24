@@ -165,7 +165,7 @@ btn.addEventListener("click", function () {
 
   const userBirthDate = new Date(
     yearInputValue,
-    monthInputValue,
+    monthInputValue - 1,
     dayInputValue
   );
 
@@ -195,19 +195,9 @@ btn.addEventListener("click", function () {
       calcYearDiff += -1;
     }
 
-    console.log(Number(userBirthMonth) === 12);
-    // let newYear = Number(userBirthMonth) === 12 ? year + 1 : year;
-
-    // if (Number(userBirthMonth) === 12) {
-    //   year + 1;
-    // } else {
-    //   year = year;
-    // }
     console.log(userBirthMonth + "hello");
     const mysmonth = monthLength(userBirthMonth);
-    const targetDate = new Date(
-      `${year}-${userBirthMonth + 1}-${userBirthDay}`
-    );
+    const targetDate = new Date(`${year}-${userBirthMonth}-${userBirthDay}`);
     console.log(`TTTT${targetDate}`);
 
     calculateDateDifference(today, targetDate, mysmonth, monthInputValue);
